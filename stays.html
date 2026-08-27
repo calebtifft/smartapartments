@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Apartments | Marina Bay Square Westlands</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 
+                        void: '#0c0b0a', 
+                        basalt: '#161513', 
+                        surface: '#1c1a17',
+                        silk: '#F5F2EB', 
+                        titanium: '#9C9384', 
+                        amberGlow: '#FF9E64',
+                        forest: '#25D366',
+                        crimson: '#EF4444'
+                    },
+                    fontFamily: { 
+                        serif: ['Cormorant Garamond', 'serif'], 
+                        sans: ['Plus Jakarta Sans', 'sans-serif'] 
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+        
+        body { background-color: #0c0b0a; color: #F5F2EB; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        .glass-panel { background: rgba(22, 21, 19, 0.7); backdrop-filter: blur(20px); border: 1px solid rgba(245, 242, 235, 0.08); }
+        .glass-card { background: rgba(28, 26, 23, 0.45); backdrop-filter: blur(12px); border: 1px solid rgba(245, 242, 235, 0.05); }
+        
+        .flatpickr-calendar { background: #161513 !important; border: 1px solid rgba(245, 242, 235, 0.1) !important; box-shadow: 0 20px 40px rgba(0,0,0,0.8) !important; }
+        .flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange { background: #FF9E64 !important; border-color: #FF9E64 !important; color: #0c0b0a !important; font-weight: bold; }
+        .flatpickr-day.inRange { background: rgba(255, 158, 100, 0.15) !important; border-color: transparent !important; color: #F5F2EB !important; }
+        .flatpickr-day.flatpickr-disabled, .flatpickr-day.flatpickr-disabled:hover { color: rgba(245, 242, 235, 0.15) !important; text-decoration: line-through; }
+        
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #0c0b0a; }
+        ::-webkit-scrollbar-thumb { background: #2a2723; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #FF9E64; }
+    </style>
+</head>
+<body class="pt-24 selection:bg-amberGlow selection:text-void">
+
+    <nav class="fixed top-0 left-0 w-full z-40 glass-panel border-b border-silk/5 py-4 px-6 md:px-12 flex items-center justify-between">
+        <a href="#" class="text-xl font-serif tracking-widest font-light uppercase">Smart Apartments<span class="text-amberGlow">.</span></a>
+        <div class="hidden md:flex items-center space-x-8 text-xs tracking-widest uppercase font-medium">
+            <a href="#gallery" class="text-titanium hover:text-silk transition-colors">Gallery</a>
+            <span class="text-silk/20">|</span>
+            <a href="#details" class="text-titanium hover:text-silk transition-colors">Suite Layout</a>
+            <span class="text-silk/20">|</span>
+            <button onclick="openAdminModal()" class="text-amberGlow/80 hover:text-amberGlow flex items-center gap-2">
+                <i class="fa-solid fa-lock text-[10px]"></i> Host Admin
+            </button>
+        </div>
+        <a href="#reservation-card" class="bg-amberGlow hover:bg-amberGlow/90 text-void text-xs uppercase tracking-widest font-semibold px-5 py-2.5 rounded-full transition-all">Book Suite</a>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 md:px-8 py-6">
+        
+        <header class="mb-6 flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-silk/5 pb-6">
+            <div>
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="text-[10px] uppercase tracking-widest bg-amberGlow/10 text-amberGlow border border-amberGlow/20 px-2.5 py-1 rounded-full font-semibold">1-Bedroom • Kitchen & Washroom</span>
+                    <span class="text-titanium text-xs"><i class="fa-solid fa-star text-amberGlow mr-1"></i>4.98 (42 Reviews)</span>
+                </div>
+                <h1 class="text-3xl md:text-5xl font-serif font-light tracking-wide text-silk">Smart Apartments Executive Residence</h1>
+                <p class="text-titanium text-xs mt-1"><i class="fa-solid fa-location-dot mr-1 text-amberGlow"></i> Marina Bay Square, Westlands, Nairobi, Kenya</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <button onclick="navigator.share ? navigator.share({title: document.title, url: window.location.href}) : alert('Link copied!')" class="text-xs uppercase tracking-widest border border-silk/10 px-4 py-2 rounded-xl hover:bg-white/5 transition flex items-center gap-2 text-titanium hover:text-silk">
+                    <i class="fa-regular fa-share-from-square"></i> Share
+                </button>
+                <button onclick="this.classList.toggle('text-crimson')" class="text-xs uppercase tracking-widest border border-silk/10 px-4 py-2 rounded-xl hover:bg-white/5 transition flex items-center gap-2 text-titanium hover:text-silk">
+                    <i class="fa-regular fa-heart"></i> Save
+                </button>
+            </div>
+        </header>
+
+        <section id="gallery" class="mb-12">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3 rounded-2xl md:rounded-3xl overflow-hidden relative">
+                <div class="col-span-2 row-span-2 relative h-[320px] md:h-[500px] overflow-hidden group cursor-pointer" onclick="openLightbox(0)">
+                    <img id="gal-img-0" src="images/wholesittingroom.jpeg" alt="Smart Apartments Full Living Space" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+                </div>
+                
+                <div class="relative h-[155px] md:h-[244px] overflow-hidden group cursor-pointer" onclick="openLightbox(1)">
+                    <img id="gal-img-1" src="images/bedroom.jpeg" alt="Master Bedroom" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="relative h-[155px] md:h-[244px] overflow-hidden group cursor-pointer" onclick="openLightbox(2)">
+                    <img id="gal-img-2" src="images/kitchen.jpeg" alt="Fitted Kitchen" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="relative h-[155px] md:h-[244px] overflow-hidden group cursor-pointer" onclick="openLightbox(3)">
+                    <img id="gal-img-3" src="images/workspace.jpeg" alt="Dedicated Workspace" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="relative h-[155px] md:h-[244px] overflow-hidden group cursor-pointer" onclick="openLightbox(4)">
+                    <img id="gal-img-4" src="images/sittingroom.jpeg" alt="Sitting Room" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <button class="absolute bottom-3 right-3 bg-void/90 hover:bg-void text-silk text-xs px-3 py-2 rounded-xl border border-silk/20 backdrop-blur-md flex items-center gap-2 shadow-2xl transition">
+                        <i class="fa-solid fa-grip text-amberGlow"></i> <span class="hidden sm:inline">Show all</span> 9 Photos
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12" id="details">
+            
+            <div class="lg:col-span-7 space-y-10">
+                
+                <div class="grid grid-cols-3 gap-4 pb-8 border-b border-silk/5 text-center">
+                    <div class="glass-card p-4 rounded-2xl">
+                        <i class="fa-solid fa-bed text-amberGlow text-xl mb-2"></i>
+                        <span class="block text-sm font-semibold">1 Bedroom</span>
+                        <span class="text-[10px] text-titanium uppercase tracking-wider">King Bed • Ambient Light</span>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl">
+                        <i class="fa-solid fa-kitchen-set text-amberGlow text-xl mb-2"></i>
+                        <span class="block text-sm font-semibold">Fitted Kitchen</span>
+                        <span class="text-[10px] text-titanium uppercase tracking-wider">Cookware, Oven & Fridge</span>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl">
+                        <i class="fa-solid fa-bath text-amberGlow text-xl mb-2"></i>
+                        <span class="block text-sm font-semibold">Private Washroom</span>
+                        <span class="text-[10px] text-titanium uppercase tracking-wider">Instant Heated Shower</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-serif font-light mb-4">Dedicated Single-Suite Living at Marina Bay Square</h2>
+                    <p class="text-titanium text-sm leading-relaxed font-light mb-4">
+                        A private 1-bedroom smart apartment located at Marina Bay Square in Westlands, Nairobi. Fully configured with automated keyless entry, 500 Mbps high-speed fiber connectivity, a fitted kitchen, and a private ensuite washroom. Booking requests route directly via WhatsApp to the property owner for quick ID verification and smooth check-in clearance.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-sm font-semibold uppercase tracking-widest text-silk mb-4">Included Amenities</h3>
+                    <div class="grid grid-cols-2 gap-3 text-xs text-titanium">
+                        <div class="flex items-center gap-3 p-3 bg-basalt rounded-xl border border-silk/5">
+                            <i class="fa-solid fa-fingerprint text-amberGlow"></i> Biometric Smart Door Access
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-basalt rounded-xl border border-silk/5">
+                            <i class="fa-solid fa-utensils text-amberGlow"></i> Complete Cookware & Gas Range
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-basalt rounded-xl border border-silk/5">
+                            <i class="fa-solid fa-wifi text-amberGlow"></i> 500 Mbps High-Speed Wi-Fi
+                        </div>
+                        <div class="flex items-center gap-3 p-3 bg-basalt rounded-xl border border-silk/5">
+                            <i class="fa-solid fa-square-parking text-amberGlow"></i> Dedicated Secure Parking
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-sm font-semibold uppercase tracking-widest text-silk mb-2">Availability Calendar</h3>
+                    <p class="text-titanium text-xs mb-4">Blocked dates reflect confirmed reservations.</p>
+                    <div id="inline-calendar-container" class="glass-card p-4 rounded-2xl flex justify-center">
+                        <div id="inline-calendar"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="lg:col-span-5" id="reservation-card">
+                <div class="glass-panel p-6 md:p-8 rounded-3xl sticky top-28 shadow-2xl border border-silk/10">
+                    
+                    <div class="flex justify-between items-baseline border-b border-silk/10 pb-6 mb-6">
+                        <div>
+                            <span class="text-3xl font-serif text-silk font-medium">KES 15,000</span>
+                            <span class="text-titanium text-xs font-light"> / night</span>
+                        </div>
+                        <span class="text-xs uppercase tracking-wider text-emerald-400 font-medium">No Extra Fees</span>
+                    </div>
+
+                    <form id="booking-form" onsubmit="handleDirectWhatsAppBooking(event)" class="space-y-4">
+                        
+                        <div class="p-3 bg-void/90 border border-silk/10 rounded-xl flex items-center justify-between text-xs">
+                            <span class="text-titanium">Unit:</span>
+                            <span class="text-silk font-medium">1-Bed • Marina Bay Square (Westlands)</span>
+                        </div>
+
+                        <div>
+                            <label class="block text-[10px] tracking-widest uppercase font-semibold text-titanium mb-1">Stay Dates (Check-In to Check-Out)</label>
+                            <div class="relative">
+                                <input type="text" id="stay-dates" required placeholder="Select check-in & check-out dates" 
+                                    class="w-full bg-void/80 border border-silk/10 rounded-xl py-3 px-4 text-xs text-silk focus:outline-none focus:border-amberGlow cursor-pointer">
+                                <i class="fa-regular fa-calendar text-amberGlow absolute right-4 top-3.5 pointer-events-none"></i>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-[10px] tracking-widest uppercase font-semibold text-titanium mb-1">Your Full Name</label>
+                            <input type="text" id="guest-name" required placeholder="John Doe" class="w-full bg-void/80 border border-silk/10 rounded-xl py-3 px-3 text-xs text-silk focus:outline-none focus:border-amberGlow">
+                        </div>
+
+                        <div>
+                            <label class="block text-[10px] tracking-widest uppercase font-semibold text-titanium mb-1">Your WhatsApp Number</label>
+                            <input type="tel" id="guest-phone" required placeholder="07XX XXX XXX" class="w-full bg-void/80 border border-silk/10 rounded-xl py-3 px-3 text-xs text-silk focus:outline-none focus:border-amberGlow">
+                        </div>
+
+                        <div id="price-breakdown" class="glass-card p-4 rounded-xl space-y-2 border border-silk/5 text-xs">
+                            <div class="flex justify-between text-titanium">
+                                <span id="rate-calculation-label">KES 15,000 x 0 nights</span>
+                                <span id="base-subtotal" class="font-mono text-silk">KES 0</span>
+                            </div>
+                            <div class="border-t border-silk/10 pt-2 flex justify-between font-semibold text-silk text-sm">
+                                <span>Total Cost</span>
+                                <span id="grand-total" class="font-mono text-amberGlow text-base">KES 0</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" id="btn-submit" class="w-full bg-[#25D366] hover:bg-[#20ba59] text-void font-bold py-3.5 rounded-xl uppercase tracking-widest text-xs transition duration-300 shadow-xl flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-base"></i> Book & Send Details on WhatsApp
+                        </button>
+                    </form>
+
+                    <div class="mt-4 p-3 bg-void/50 border border-silk/5 rounded-xl text-[10px] text-titanium space-y-1">
+                        <div class="flex items-center gap-2 text-silk font-medium">
+                            <i class="fa-solid fa-id-card text-amberGlow"></i> Direct Host Handover:
+                        </div>
+                        <p>Dates are instantly blocked in the host calendar and transferred to WhatsApp (0740813769) along with your calculated rate for ID clearance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="border-t border-silk/10 bg-[#080706] text-titanium text-xs mt-24">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-silk/5">
+                
+                <div class="space-y-4">
+                    <a href="#" class="text-2xl font-serif tracking-widest font-light text-silk uppercase block">
+                        Smart Apartments<span class="text-amberGlow">.</span>
+                    </a>
+                    <p class="text-xs text-titanium font-light leading-relaxed">
+                        Westlands' premier 1-bedroom executive smart suite at Marina Bay Square. Curated for business travelers, digital nomads, and luxury short stays with automated check-in systems.
+                    </p>
+                    <div class="flex items-center gap-4 text-silk/60">
+                        <a href="https://api.whatsapp.com/send?phone=254740813769" target="_blank" class="hover:text-amberGlow text-base transition"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="tel:0740813769" class="hover:text-amberGlow text-base transition"><i class="fa-solid fa-phone"></i></a>
+                        <a href="mailto:contact@smartapartments.co.ke" class="hover:text-amberGlow text-base transition"><i class="fa-solid fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <h4 class="text-silk font-semibold tracking-widest uppercase text-[11px]">Property Features</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amberGlow text-[10px]"></i> 1 Master King Suite</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amberGlow text-[10px]"></i> Fully Fitted Kitchen</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amberGlow text-[10px]"></i> Ensuite Heated Washroom</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amberGlow text-[10px]"></i> 500 Mbps Fiber Wi-Fi</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amberGlow text-[10px]"></i> Biometric Smart Access</li>
+                    </ul>
+                </div>
+
+                <div class="space-y-3">
+                    <h4 class="text-silk font-semibold tracking-widest uppercase text-[11px]">Location</h4>
+                    <p class="text-xs text-titanium leading-relaxed font-light">
+                        <strong class="text-silk block font-medium mb-1">Marina Bay Square, Westlands</strong>
+                        Nairobi, Kenya. Walking distance to leading malls, gourmet restaurants, corporate hubs, and expressway connections.
+                    </p>
+                    <div class="pt-2 text-xs text-amberGlow font-mono">
+                        Rate: KES 15,000 / night
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <h4 class="text-silk font-semibold tracking-widest uppercase text-[11px]">Direct Inquiries</h4>
+                    <p class="text-xs text-titanium font-light">
+                        Direct owner line for bookings, ID uploads & confirmation:
+                    </p>
+                    <a href="https://api.whatsapp.com/send?phone=254740813769" target="_blank" class="inline-flex items-center gap-2 bg-[#25D366]/20 border border-[#25D366]/40 text-emerald-400 px-3.5 py-2 rounded-xl text-xs font-semibold hover:bg-[#25D366]/30 transition">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> 0740813769
+                    </a>
+                    <div class="pt-2">
+                        <button onclick="openAdminModal()" class="text-[11px] text-titanium hover:text-amberGlow flex items-center gap-1.5 transition">
+                            <i class="fa-solid fa-lock text-[10px]"></i> Host Administration Login
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-titanium">
+                <p>&copy; 2026 Smart Apartments. All rights reserved. Marina Bay Square, Westlands, Nairobi.</p>
+                <div class="flex gap-6">
+                    <a href="#gallery" class="hover:text-silk transition">Gallery</a>
+                    <a href="#details" class="hover:text-silk transition">Suite Specifications</a>
+                    <a href="#reservation-card" class="hover:text-silk transition">Instant Booking</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-void/95 backdrop-blur-xl flex flex-col justify-between p-4 md:p-8 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="flex justify-between items-center text-silk">
+            <span id="lightbox-counter" class="text-xs tracking-widest font-mono text-titanium">1 / 9</span>
+            <button onclick="closeLightbox()" class="text-silk hover:text-amberGlow p-2 text-xl transition"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        
+        <div class="relative flex items-center justify-center flex-1 max-h-[80vh] my-auto">
+            <img id="lightbox-img" src="" alt="Gallery Image" class="max-h-full max-w-full rounded-2xl object-contain shadow-2xl transition duration-300">
+            <button onclick="navLightbox(-1)" class="absolute left-2 md:left-6 text-silk/70 hover:text-amberGlow text-2xl p-4 transition"><i class="fa-solid fa-chevron-left"></i></button>
+            <button onclick="navLightbox(1)" class="absolute right-2 md:right-6 text-silk/70 hover:text-amberGlow text-2xl p-4 transition"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+
+        <div class="text-center">
+            <p id="lightbox-caption" class="text-xs text-titanium tracking-wider"></p>
+        </div>
+    </div>
+
+    <div id="admin-modal" class="fixed inset-0 z-50 bg-void/90 backdrop-blur-md flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="glass-panel w-full max-w-5xl rounded-3xl p-6 md:p-8 max-h-[90vh] flex flex-col border border-silk/10 shadow-2xl">
+            <div class="flex justify-between items-center pb-6 border-b border-silk/10">
+                <div>
+                    <h3 class="text-2xl font-serif font-light text-silk">Smart Apartments — Host Manager</h3>
+                    <p class="text-titanium text-xs">All WhatsApp bookings for Marina Bay Square, Westlands logged in real time.</p>
+                </div>
+                <button onclick="closeAdminModal()" class="text-titanium hover:text-silk p-2"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+
+            <div class="overflow-x-auto my-6 flex-1">
+                <table class="w-full text-left text-xs text-titanium">
+                    <thead class="uppercase tracking-widest text-[10px] text-silk border-b border-silk/10 bg-basalt">
+                        <tr>
+                            <th class="p-3">Ref ID & Guest</th>
+                            <th class="p-3">Stay Dates</th>
+                            <th class="p-3">Total Cost (KES)</th>
+                            <th class="p-3">Guest Contact</th>
+                            <th class="p-3 text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-booking-table" class="divide-y divide-silk/5">
+                        </tbody>
+                </table>
+            </div>
+
+            <div class="pt-4 border-t border-silk/10 flex justify-between items-center text-xs">
+                <span id="admin-count-label" class="text-titanium">0 Active Stays</span>
+                <button onclick="resetToSampleBookings()" class="text-amberGlow hover:underline">Reset Demo Records</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="edit-modal" class="fixed inset-0 z-50 bg-void/95 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="glass-panel w-full max-w-md p-6 rounded-2xl space-y-4">
+            <h4 class="text-lg font-serif">Modify Guest Booking</h4>
+            <div>
+                <label class="block text-[10px] text-titanium uppercase mb-1">Guest Name</label>
+                <input type="text" id="edit-name" class="w-full bg-void border border-silk/10 rounded-xl p-2.5 text-xs text-silk">
+            </div>
+            <div>
+                <label class="block text-[10px] text-titanium uppercase mb-1">Phone</label>
+                <input type="text" id="edit-phone" class="w-full bg-void border border-silk/10 rounded-xl p-2.5 text-xs text-silk">
+            </div>
+            <input type="hidden" id="edit-booking-id">
+            <div class="flex gap-2 pt-2">
+                <button onclick="saveReservationEdit()" class="flex-1 bg-amberGlow text-void py-2.5 rounded-xl font-semibold text-xs">Save Changes</button>
+                <button onclick="closeEditModal()" class="flex-1 bg-basalt text-silk border border-silk/10 py-2.5 rounded-xl text-xs">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const OWNER_PHONE = "254740813769"; // WhatsApp phone endpoint
+        const DAILY_RATE = 15000;
+
+        const galleryData = [
+            { url: "images/wholestiing.jpeg", caption: "Smart Apartments — Full Living Space & Layout (Marina Bay Square)" },
+            { url: "images/bedroom.jpeg", caption: "Executive 1-Bedroom Master Suite with King Bed" },
+            { url: "images/kitchen.jpeg", caption: "Fitted Kitchen & Modern Appliances" },
+            { url: "images/workspace.jpeg", caption: "Dedicated Fiber Workstation" },
+            { url: "images/sittingroom.jpeg", caption: "Main Sitting Room & Entertainment Lounge" },
+            { url: "images/sitting.jpeg", caption: "Comfortable Sitting Lounge Area" },
+            { url: "images/sittingangle2.jpeg", caption: "Sitting Room View & Ambiance (Angle 2)" },
+            { url: "images/sittingangle3.jpeg", caption: "Sitting Room Natural Light (Angle 3)" },
+            { url: "images/sittingroomangle1.jpeg", caption: "Sitting Room Entrance Perspective (Angle 1)" }
+        ];
+
+        let currentImageIndex = 0;
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            updateLightboxContent();
+            document.getElementById('lightbox-modal').classList.remove('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox-modal').classList.add('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = 'auto';
+        }
+
+        function navLightbox(direction) {
+            currentImageIndex = (currentImageIndex + direction + galleryData.length) % galleryData.length;
+            updateLightboxContent();
+        }
+
+        function updateLightboxContent() {
+            document.getElementById('lightbox-img').src = galleryData[currentImageIndex].url;
+            document.getElementById('lightbox-caption').innerText = galleryData[currentImageIndex].caption;
+            document.getElementById('lightbox-counter').innerText = `${currentImageIndex + 1} / ${galleryData.length}`;
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('lightbox-modal').classList.contains('opacity-0')) return;
+            if (e.key === 'ArrowRight') navLightbox(1);
+            if (e.key === 'ArrowLeft') navLightbox(-1);
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // --- LOCAL STORAGE ENGINE ---
+        let primaryDatePicker, inlineCalendarPicker;
+
+        function initializeData() {
+            if (!localStorage.getItem('smartapartments_reservations')) {
+                const sample = [
+                    {
+                        id: 'SMART-104',
+                        name: 'Marcus Vance',
+                        phone: '0712345678',
+                        checkIn: getFutureDateString(2),
+                        checkOut: getFutureDateString(5),
+                        total: 45000
+                    }
+                ];
+                localStorage.setItem('smartapartments_reservations', JSON.stringify(sample));
+            }
+        }
+
+        function getFutureDateString(daysAhead) {
+            const d = new Date();
+            d.setDate(d.getDate() + daysAhead);
+            return d.toISOString().split('T')[0];
+        }
+
+        function getReservations() {
+            return JSON.parse(localStorage.getItem('smartapartments_reservations') || '[]');
+        }
+
+        function saveReservations(reservations) {
+            localStorage.setItem('smartapartments_reservations', JSON.stringify(reservations));
+            refreshDatePickers();
+            renderAdminTable();
+        }
+
+        function getBlockedDateRanges() {
+            return getReservations().map(r => ({
+                from: r.checkIn,
+                to: r.checkOut
+            }));
+        }
+
+        // --- PRICING (FLAT KES 15,000/NIGHT) ---
+        let currentCalculatedTotal = 0;
+        let selectedDaysCount = 0;
+
+        function calculatePrices() {
+            if (!primaryDatePicker || !primaryDatePicker.selectedDates || primaryDatePicker.selectedDates.length < 2) {
+                document.getElementById('rate-calculation-label').innerText = `KES ${DAILY_RATE.toLocaleString()} x 0 nights`;
+                document.getElementById('base-subtotal').innerText = 'KES 0';
+                document.getElementById('grand-total').innerText = 'KES 0';
+                currentCalculatedTotal = 0;
+                selectedDaysCount = 0;
+                return;
+            }
+
+            const d1 = new Date(primaryDatePicker.selectedDates[0]).setHours(0, 0, 0, 0);
+            const d2 = new Date(primaryDatePicker.selectedDates[1]).setHours(0, 0, 0, 0);
+            
+            const nights = Math.max(1, Math.round((d2 - d1) / (1000 * 60 * 60 * 24)));
+            selectedDaysCount = nights;
+
+            const total = nights * DAILY_RATE;
+            currentCalculatedTotal = total;
+
+            document.getElementById('rate-calculation-label').innerText = `KES ${DAILY_RATE.toLocaleString()} x ${nights} night${nights > 1 ? 's' : ''}`;
+            document.getElementById('base-subtotal').innerText = `KES ${total.toLocaleString()}`;
+            document.getElementById('grand-total').innerText = `KES ${total.toLocaleString()}`;
+        }
+
+        // --- FLATPICKR ---
+        function initPickers() {
+            const blocked = getBlockedDateRanges();
+
+            primaryDatePicker = flatpickr("#stay-dates", {
+                mode: "range",
+                minDate: "today",
+                dateFormat: "Y-m-d",
+                disable: blocked,
+                onChange: function(selectedDates) {
+                    if (selectedDates.length === 2) {
+                        calculatePrices();
+                    }
+                }
+            });
+
+            inlineCalendarPicker = flatpickr("#inline-calendar", {
+                inline: true,
+                mode: "range",
+                minDate: "today",
+                dateFormat: "Y-m-d",
+                disable: blocked,
+                showMonths: window.innerWidth > 768 ? 2 : 1
+            });
+        }
+
+        function refreshDatePickers() {
+            if (primaryDatePicker && inlineCalendarPicker) {
+                const blocked = getBlockedDateRanges();
+                primaryDatePicker.set('disable', blocked);
+                primaryDatePicker.clear();
+                inlineCalendarPicker.set('disable', blocked);
+                calculatePrices();
+            }
+        }
+
+        // --- WHATSAPP BOOKING SENDER ---
+        function handleDirectWhatsAppBooking(e) {
+            e.preventDefault();
+
+            if (!primaryDatePicker.selectedDates || primaryDatePicker.selectedDates.length < 2) {
+                alert("Please select both check-in and check-out dates on the calendar first.");
+                return;
+            }
+
+            const d1Obj = primaryDatePicker.selectedDates[0];
+            const d2Obj = primaryDatePicker.selectedDates[1];
+
+            const checkIn = d1Obj.getFullYear() + '-' + String(d1Obj.getMonth() + 1).padStart(2, '0') + '-' + String(d1Obj.getDate()).padStart(2, '0');
+            const checkOut = d2Obj.getFullYear() + '-' + String(d2Obj.getMonth() + 1).padStart(2, '0') + '-' + String(d2Obj.getDate()).padStart(2, '0');
+
+            const t1 = new Date(d1Obj).setHours(0, 0, 0, 0);
+            const t2 = new Date(d2Obj).setHours(0, 0, 0, 0);
+            const nights = Math.max(1, Math.round((t2 - t1) / (1000 * 60 * 60 * 24)));
+            const finalTotal = nights * DAILY_RATE;
+
+            const name = document.getElementById('guest-name').value.trim();
+            const phone = document.getElementById('guest-phone').value.trim();
+            const bookingId = 'SMART-' + Math.floor(1000 + Math.random() * 9000);
+
+            // Save to LocalStorage Admin
+            const newReservation = {
+                id: bookingId,
+                name: name,
+                phone: phone,
+                checkIn: checkIn,
+                checkOut: checkOut,
+                total: finalTotal,
+                createdAt: new Date().toISOString()
+            };
+
+            const reservations = getReservations();
+            reservations.push(newReservation);
+            saveReservations(reservations);
+
+            // Formatted message payload
+            const messageBody = 
+`*Hello Smart Apartments (Marina Bay Square, Westlands)!*
+
+I would like to book the *1-Bedroom Suite (Kitchen and Washroom)*.
+
+*Booking Details:*
+• *Booking Ref:* ${bookingId}
+• *Guest Name:* ${name}
+• *Phone:* ${phone}
+• *Booking Date From:* ${checkIn}
+• *Booking Date To:* ${checkOut}
+• *Duration:* ${nights} night(s)
+• *Calculated Cost:* KES ${finalTotal.toLocaleString()}
+
+*Identification:*
+I am sending my identification documents below for verification and check-in clearance.`;
+
+            const targetURL = `https://api.whatsapp.com/send?phone=${OWNER_PHONE}&text=${encodeURIComponent(messageBody)}`;
+            window.open(targetURL, '_blank');
+
+            document.getElementById('booking-form').reset();
+            calculatePrices();
+        }
+
+        // --- ADMIN MANAGER ---
+        function openAdminModal() {
+            renderAdminTable();
+            document.getElementById('admin-modal').classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeAdminModal() {
+            document.getElementById('admin-modal').classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        function renderAdminTable() {
+            const list = getReservations();
+            const tableBody = document.getElementById('admin-booking-table');
+            document.getElementById('admin-count-label').innerText = `${list.length} Stays Logged`;
+
+            tableBody.innerHTML = '';
+            
+            if (list.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-titanium">No active bookings. The calendar is completely open.</td></tr>`;
+                return;
+            }
+
+            list.forEach((res) => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-basalt/60 transition';
+                tr.innerHTML = `
+                    <td class="p-3 text-silk">
+                        <span class="font-medium">${res.name}</span>
+                        <span class="block text-[10px] text-amberGlow font-mono">${res.id} • 1-Bed Marina Bay Square</span>
+                    </td>
+                    <td class="p-3 font-mono">${res.checkIn} → ${res.checkOut}</td>
+                    <td class="p-3 font-mono text-silk">KES ${(res.total || 0).toLocaleString()}</td>
+                    <td class="p-3">
+                        <a href="https://api.whatsapp.com/send?phone=${res.phone.replace(/[^0-9]/g, '')}" target="_blank" class="text-emerald-400 hover:underline flex items-center gap-1">
+                            <i class="fa-brands fa-whatsapp"></i> ${res.phone}
+                        </a>
+                    </td>
+                    <td class="p-3 text-center space-x-2">
+                        <button onclick="openEditModal('${res.id}')" class="text-amberGlow hover:text-white p-1" title="Edit Booking"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button onclick="deleteReservation('${res.id}')" class="text-crimson hover:text-white p-1" title="Delete & Release Dates"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        }
+
+        function deleteReservation(id) {
+            if (confirm(`Delete booking ${id}? This immediately unblocks the calendar dates for other guests.`)) {
+                let reservations = getReservations().filter(r => r.id !== id);
+                saveReservations(reservations);
+            }
+        }
+
+        function openEditModal(id) {
+            const res = getReservations().find(r => r.id === id);
+            if (!res) return;
+
+            document.getElementById('edit-booking-id').value = res.id;
+            document.getElementById('edit-name').value = res.name;
+            document.getElementById('edit-phone').value = res.phone;
+
+            document.getElementById('edit-modal').classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeEditModal() {
+            document.getElementById('edit-modal').classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        function saveReservationEdit() {
+            const id = document.getElementById('edit-booking-id').value;
+            const reservations = getReservations();
+            const target = reservations.find(r => r.id === id);
+
+            if (target) {
+                target.name = document.getElementById('edit-name').value;
+                target.phone = document.getElementById('edit-phone').value;
+                saveReservations(reservations);
+                closeEditModal();
+            }
+        }
+
+        function resetToSampleBookings() {
+            localStorage.removeItem('smartapartments_reservations');
+            initializeData();
+            refreshDatePickers();
+            renderAdminTable();
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initializeData();
+            initPickers();
+        });
+    </script>
+</body>
+</html>

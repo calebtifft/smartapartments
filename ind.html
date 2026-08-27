@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Living | Systems & Showrooms</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        studioBase: '#F9F8F6',     /* Premium Gallery Off-White */
+                        studioInk: '#151413',      /* Deep Charcoal Carbon */
+                        studioBorder: '#E5E2DD',   /* Clean Concrete Line */
+                        cyberGlow: '#00E5FF'       /* Cyan Laser Accent for Active States */
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Syne', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #F9F8F6; color: #151413; }
+        .dashed-grid { background-image: radial-gradient(#E5E2DD 1px, transparent 1px); background-size: 24px 24px; }
+        .frame-line { border-color: #E5E2DD; }
+    </style>
+</head>
+<body class="h-screen w-screen overflow-hidden flex flex-col md:flex-row dashed-grid">
+
+    <!-- LEFT SIDEBAR: PERMANENT BRAND ANCHOR & NAVIGATION CONTROL -->
+    <aside class="w-full md:w-[35%] h-auto md:h-full bg-studioBase border-b md:border-b-0 md:border-r frame-line p-8 md:p-12 flex flex-col justify-between z-20">
+        <div>
+            <!-- Monospaced Avant-garde Logo -->
+            <div class="text-xs font-mono tracking-[0.4em] uppercase mb-12">
+                [ C A N V A S <span class="text-cyberGlow">_</span> ]
+            </div>
+
+            <!-- Architectural Typography Headline -->
+            <h1 class="text-3xl md:text-5xl font-display font-extrabold tracking-tight text-studioInk uppercase leading-[0.95] mb-6">
+                Engineering <br>Meets <br>Inhabitation.
+            </h1>
+            <p class="text-xs text-studioInk/60 font-light max-w-xs leading-relaxed mb-8">
+                Bespoke automation systems engineered for private residences, integrated into fully functional luxury showroom apartments.
+            </p>
+        </div>
+
+        <!-- THE ROUTING BUTTONS: Switches active frame modules -->
+        <nav class="space-y-4 my-6">
+            <button onclick="switchContext('solutions')" id="nav-solutions" class="w-full text-left font-display font-semibold text-lg uppercase tracking-wider flex items-center justify-between py-3 px-4 rounded-xl border border-studioInk bg-studioInk text-studioBase transition-all duration-300">
+                <span>01 / Installations</span>
+                <i class="fa-solid fa-microchip text-sm"></i>
+            </button>
+            <button onclick="switchContext('stays')" id="nav-stays" class="w-full text-left font-display font-semibold text-lg uppercase tracking-wider flex items-center justify-between py-3 px-4 rounded-xl border border-transparent text-studioInk/50 hover:text-studioInk hover:border-studioBorder transition-all duration-300">
+                <span>02 / Smart Stays</span>
+                <i class="fa-solid fa-house-laptop text-sm"></i>
+            </button>
+        </nav>
+
+        <!-- Footer Coordinates -->
+        <div class="text-[10px] font-mono text-studioInk/40 space-y-1">
+            <div>SYSTEM DESIGNS &copy;2026</div>
+            <div>LOC: NAIROBI OPERATIONAL HUB</div>
+        </div>
+    </aside>
+
+    <!-- RIGHT SPLIT INTERACTIVE DASHBOARD CONTAINER -->
+    <main class="w-full md:w-[65%] h-full relative bg-white">
+        
+        <!-- FRAME LAYER 1: SMART SOLUTIONS PAGE -->
+        <iframe id="frame-solutions" src="solutions.html" class="absolute inset-0 w-full h-full border-none transition-all duration-500 opacity-100 z-10"></iframe>
+
+        <!-- FRAME LAYER 2: BNB BOOKING PAGE -->
+        <iframe id="frame-stays" src="stays.html" class="absolute inset-0 w-full h-full border-none transition-all duration-500 opacity-0 pointer-events-none z-0"></iframe>
+
+    </main>
+
+    <!-- AUTOMATED SYSTEM DESKTOP APP INTEGRATION CONTROLLER -->
+    <script>
+        function switchContext(target) {
+            const btnSolutions = document.getElementById('nav-solutions');
+            const btnStays = document.getElementById('nav-stays');
+            const frameSolutions = document.getElementById('frame-solutions');
+            const frameStays = document.getElementById('frame-stays');
+
+            if (target === 'solutions') {
+                // Adjust Interface Navigation State
+                btnSolutions.className = "w-full text-left font-display font-semibold text-lg uppercase tracking-wider flex items-center justify-between py-3 px-4 rounded-xl border border-studioInk bg-studioInk text-studioBase transition-all duration-300";
+                btnStays.className = "w-full text-left font-display font-semibold text-lg uppercase tracking-wider flex items-center justify-between py-3 px-4 rounded-xl border border-transparent text-studioInk/50 hover:text-studioInk hover:border-studioBorder transition-all duration-300";
+                
+                // Route Frame visibility states cleanly
+                frameSolutions.classList.replace('opacity-0', 'opacity-100');
+                frameSolutions.classList.remove('pointer-events-none');
+                frameSolutions.style.zIndex = "10";
+                
+                frameStays.classList.replace('opacity-100', 'opacity-0');
+                frameStays.classList.add('pointer-events-none');
+                frameStays.style.zIndex = "0";
+            } else {
+                // Adjust Interface Navigation State
+                btnStays.className = "w-full text-left font-display font-semibold text-lg uppercase tracking-wider flex items-center justify-between py-3 px-4 rounded-xl border border-studioInk bg-studioInk text-studioBase transition-all duration-300";
+                btnSolutions.className = "w-full text-left font-display font-semibold text-lg uppercase tracking-wider flex items-center justify-between py-3 px-4 rounded-xl border border-transparent text-studioInk/50 hover:text-studioInk hover:border-studioBorder transition-all duration-300";
+                
+                // Route Frame visibility states cleanly
+                frameStays.classList.replace('opacity-0', 'opacity-100');
+                frameStays.classList.remove('pointer-events-none');
+                frameStays.style.zIndex = "10";
+                
+                frameSolutions.classList.replace('opacity-100', 'opacity-0');
+                frameSolutions.classList.add('pointer-events-none');
+                frameSolutions.style.zIndex = "0";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Apartments | Smart Infrastructure & Luxury Stays</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        void: '#12110F',
+                        basalt: '#1C1A17',
+                        silk: '#F5F2EB',
+                        titanium: '#9C9384',
+                        amberGlow: '#FF9E64',
+                    },
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #12110F;
+            color: #F5F2EB;
+            overflow-x: hidden;
+        }
+        .font-editorial {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        /* Custom smooth transition transitions */
+        .split-panel {
+            transition: width 0.7s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.7s ease, filter 0.7s ease;
+        }
+        /* Custom glassmorphism utility */
+        .glass-card {
+            background: rgba(28, 26, 23, 0.4);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(245, 242, 235, 0.08);
+        }
+        /* Custom glow radial tracker setup */
+        .glow-card {
+            position: relative;
+        }
+        .glow-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: inherit;
+            background: radial-gradient(400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255,158,100,0.06), transparent 60%);
+            z-index: 1;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            opacity: 0;
+        }
+        .glow-card:hover::before {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-void text-silk selection:bg-amberGlow selection:text-void">
+
+    <!-- 🏛️ GLOBAL STICKY NAVIGATION -->
+    <nav class="fixed top-0 left-0 w-full z-50 glass-card border-b border-silk/5 py-4 px-6 md:px-12 flex items-center justify-between">
+        <!-- Left Brand Anchor -->
+        <a href="#" class="text-xl md:text-2xl font-editorial tracking-widest font-light uppercase text-silk hover:text-amberGlow transition-colors duration-300">
+            Smart Apartments<span class="text-amberGlow">.</span>
+        </a>
+
+        <!-- Center Cross-funnel Links -->
+        <div class="hidden md:flex items-center space-x-8 text-xs tracking-widest uppercase font-medium">
+            <div class="relative group">
+                <button class="hover:text-amberGlow transition-colors duration-300 flex items-center gap-1 text-titanium hover:text-silk">
+                    Installations <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                </button>
+                <!-- Dropdown items template structure -->
+                <div class="absolute top-full left-0 mt-4 w-56 bg-basalt border border-silk/10 rounded-lg p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 shadow-xl z-50">
+                    <a href="#installations" class="block px-4 py-2 hover:bg-void rounded text-silk hover:text-amberGlow transition-colors">Smart Gates & Doors</a>
+                    <a href="#installations" class="block px-4 py-2 hover:bg-void rounded text-silk hover:text-amberGlow transition-colors">Invisible Windows</a>
+                    <a href="#installations" class="block px-4 py-2 hover:bg-void rounded text-silk hover:text-amberGlow transition-colors">Ambiance Lighting</a>
+                </div>
+            </div>
+            
+            <span class="text-silk/20">|</span>
+            
+            <a href="stays.html" class="text-titanium hover:text-silk hover:text-amberGlow transition-colors duration-300">Smart Stays</a>
+        </div>
+
+        <!-- Right Core Action Callouts -->
+        <div class="flex items-center space-x-4">
+            <a href="stays.html" class="hidden sm:inline-block text-xs uppercase tracking-widest font-medium text-titanium hover:text-silk transition-colors duration-300 self-center pt-1">Book Stay</a>
+            <a href="#contact" class="bg-amberGlow text-void text-xs uppercase tracking-widest font-semibold px-5 py-2.5 rounded-full shadow-lg hover:bg-amberGlow/90 transition-all duration-300 transform hover:scale-[1.02]">
+                Consultation
+            </a>
+        </div>
+    </nav>
+
+    <!-- 🚀 SECTION 1: THE DUAL HERO SPLIT SCREEN -->
+    <header id="hero-split-container" class="relative w-full h-screen flex flex-col md:flex-row overflow-hidden bg-void pt-16 md:pt-0">
+        
+        <!-- Left Side Panel: Architect / Installation funnel -->
+        <div id="panel-left" class="split-panel relative w-full md:w-1/2 h-1/2 md:h-full flex items-center justify-center bg-zinc-900 overflow-hidden group/panel border-b md:border-b-0 md:border-r border-silk/5">
+            <div class="absolute inset-0 bg-cover bg-center opacity-40 scale-105 group-hover/panel:scale-100 transition-transform duration-1000" style="background-image: url('https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&q=80&w=1200');"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-void via-void/60 to-transparent"></div>
+            
+            <div class="relative z-10 max-w-md px-8 text-center md:text-left transition-all duration-500">
+                <span class="text-xs font-semibold tracking-[0.3em] uppercase text-amberGlow block mb-2">Architect</span>
+                <h1 class="text-4xl md:text-5xl font-editorial font-light tracking-wide text-silk mb-4">Command Your Space.</h1>
+                <p class="text-sm font-light text-titanium leading-relaxed mb-6">We engineer and install premium smart gates, autonomous windows, biometric doors, and reactive illumination blueprints.</p>
+                <a href="#installations" class="inline-flex items-center gap-2 border border-silk/20 hover:border-amberGlow text-silk hover:text-amberGlow px-6 py-3 rounded-full text-xs uppercase tracking-widest font-medium transition-all duration-300 bg-void/30 backdrop-blur-sm">
+                    Explore Engineering <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Right Side Panel: Inhabit / Hospitality Funnel -->
+        <div id="panel-right" class="split-panel relative w-full md:w-1/2 h-1/2 md:h-full flex items-center justify-center bg-zinc-800 overflow-hidden group/panel">
+            <div class="absolute inset-0 bg-cover bg-center opacity-40 scale-105 group-hover/panel:scale-100 transition-transform duration-1000" style="background-image: url('images/wholestiing.jpeg');"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-void via-void/60 to-transparent"></div>
+            
+            <div class="relative z-10 max-w-md px-8 text-center md:text-left transition-all duration-500">
+                <span class="text-xs font-semibold tracking-[0.3em] uppercase text-amberGlow block mb-2">Inhabit</span>
+                <h1 class="text-4xl md:text-5xl font-editorial font-light tracking-wide text-silk mb-4">Live Inside Smart Apartments.</h1>
+                <p class="text-sm font-light text-titanium leading-relaxed mb-6">Reserve curated, luxury boutique residences at Marina Bay Square in Westlands meticulously automated for work and rest.</p>
+                <a href="stays.html" class="inline-flex items-center gap-2 border border-silk/20 hover:border-amberGlow text-silk hover:text-amberGlow px-6 py-3 rounded-full text-xs uppercase tracking-widest font-medium transition-all duration-300 bg-void/30 backdrop-blur-sm">
+                    Browse Smart Stays <i class="fa-solid fa-calendar text-[10px]"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 🛠️ SECTION 2: SMART ECOSYSTEM SHOWCASE -->
+    <section id="installations" class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <span class="text-xs font-semibold tracking-[0.3em] uppercase text-amberGlow block mb-3">Systems Blueprint</span>
+            <h2 class="text-3xl md:text-5xl font-editorial font-light tracking-wide mb-4">The Elements of Responsive Design</h2>
+            <p class="text-titanium max-w-xl mx-auto text-sm font-light leading-relaxed">Hardware and security frameworks designed to blend seamlessly into residential architecture.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Large Card: Smart Access -->
+            <div class="glow-card md:col-span-2 bg-basalt p-8 rounded-2xl border border-silk/5 flex flex-col justify-between min-h-[320px] overflow-hidden group">
+                <div class="relative z-10 flex justify-between items-start">
+                    <div>
+                        <div class="w-12 h-12 rounded-full bg-void border border-silk/10 flex items-center justify-center text-amberGlow mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-door-open text-lg"></i>
+                        </div>
+                        <h3 class="text-xl tracking-wide uppercase font-medium mb-2">Bespoke Portals & Access</h3>
+                        <p class="text-titanium font-light text-sm max-w-md leading-relaxed">Heavy motor automation for perimeter gates and main residential entrance doors integrated with optical biometrics, remote access loops, and real-time encryption logs.</p>
+                    </div>
+                </div>
+                <div class="relative z-10 mt-6 pt-4 border-t border-silk/5 flex justify-between items-center text-xs tracking-widest uppercase text-titanium group-hover:text-amberGlow transition-colors">
+                    <span>Biometric & Mechanical Integration</span>
+                    <i class="fa-solid fa-arrow-trend-up"></i>
+                </div>
+            </div>
+
+            <!-- Small Card: Smart Windows -->
+            <div class="glow-card bg-basalt p-8 rounded-2xl border border-silk/5 flex flex-col justify-between min-h-[320px] group">
+                <div class="relative z-10">
+                    <div class="w-12 h-12 rounded-full bg-void border border-silk/10 flex items-center justify-center text-amberGlow mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fa-solid fa-wind text-lg"></i>
+                    </div>
+                    <h3 class="text-xl tracking-wide uppercase font-medium mb-2">Fluid Boundaries</h3>
+                    <p class="text-titanium font-light text-sm leading-relaxed">Automated glass panels and thermal blinds that open, tint, or seal automatically in direct sync with indoor telemetry data or outdoor microclimate variances.</p>
+                </div>
+                <div class="relative z-10 mt-6 pt-4 border-t border-silk/5 text-xs tracking-widest uppercase text-titanium group-hover:text-amberGlow transition-colors">
+                    <span>Climatic Automation</span>
+                </div>
+            </div>
+
+            <!-- Small Card: Smart Lighting -->
+            <div class="glow-card bg-basalt p-8 rounded-2xl border border-silk/5 flex flex-col justify-between min-h-[320px] group">
+                <div class="relative z-10">
+                    <div class="w-12 h-12 rounded-full bg-void border border-silk/10 flex items-center justify-center text-amberGlow mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fa-solid fa-lightbulb text-lg"></i>
+                    </div>
+                    <h3 class="text-xl tracking-wide uppercase font-medium mb-2">Sculpted Ambiance</h3>
+                    <p class="text-titanium font-light text-sm leading-relaxed">Intelligent architectural lighting zones operating on warm circadian tracks. Programmable dynamic scenes configured to follow paths or voice prompts seamlessly.</p>
+                </div>
+                <div class="relative z-10 mt-6 pt-4 border-t border-silk/5 text-xs tracking-widest uppercase text-titanium group-hover:text-amberGlow transition-colors">
+                    <span>Circadian Light Systems</span>
+                </div>
+            </div>
+
+            <!-- Large Card: Managed Architecture -->
+            <div class="glow-card md:col-span-2 bg-basalt p-8 rounded-2xl border border-silk/5 flex flex-col justify-between min-h-[320px] group">
+                <div class="relative z-10">
+                    <div class="w-12 h-12 rounded-full bg-void border border-silk/10 flex items-center justify-center text-amberGlow mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fa-solid fa-laptop-code text-lg"></i>
+                    </div>
+                    <h3 class="text-xl tracking-wide uppercase font-medium mb-2">Fully Managed Architecture</h3>
+                    <p class="text-titanium font-light text-sm max-w-xl leading-relaxed">Every localized node—from smart gates to lighting loops—converges under a protected internal system infrastructure. We don't just hang appliances; we build centralized localized smart ecosystems.</p>
+                </div>
+                <div class="relative z-10 mt-6 pt-4 border-t border-silk/5 flex justify-between items-center text-xs tracking-widest uppercase text-titanium">
+                    <span>Centralized Control Centers</span>
+                    <a href="#contact" class="text-amberGlow hover:underline">Request Blueprint Layout</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🛏️ SECTION 3: THE LIVE SHOWROOMS -->
+    <section id="stays" class="py-24 bg-basalt/30 border-t border-b border-silk/5 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+                <div>
+                    <span class="text-xs font-semibold tracking-[0.3em] uppercase text-amberGlow block mb-3">Live Showrooms</span>
+                    <h2 class="text-3xl md:text-5xl font-editorial font-light tracking-wide">Immersive Hospitality</h2>
+                </div>
+                <p class="text-titanium max-w-sm text-sm font-light leading-relaxed mt-4 md:mt-0">
+                    Book an overnight reservation or luxury staycation in our flagship Smart Apartments residence at Marina Bay Square.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Stay 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden group">
+                    <div class="relative h-72 md:h-96 overflow-hidden">
+                        <div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-700" style="background-image: url('images/wholesittingroom.jpeg');"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 flex flex-wrap gap-2">
+                            <span class="text-[10px] tracking-widest uppercase font-semibold bg-void/80 backdrop-blur-md px-3 py-1 rounded-full text-silk border border-silk/10"><i class="fa-solid fa-key mr-1 text-amberGlow"></i> Smart Entry</span>
+                            <span class="text-[10px] tracking-widest uppercase font-semibold bg-void/80 backdrop-blur-md px-3 py-1 rounded-full text-silk border border-silk/10"><i class="fa-solid fa-sliders mr-1 text-amberGlow"></i> Circadian Lighting</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-2xl font-editorial font-light tracking-wide">Executive 1-Bedroom Residence</h3>
+                            <span class="text-amberGlow font-medium text-sm">KES 15,000 / night</span>
+                        </div>
+                        <p class="text-titanium font-light text-sm mb-6 leading-relaxed">Located at Marina Bay Square, Westlands. Features biometric smart access, fitted kitchen, 500 Mbps fiber Wi-Fi, and private heated ensuite washroom.</p>
+                        <button class="w-full bg-silk text-void hover:bg-amberGlow hover:text-void py-3 rounded-xl text-xs uppercase tracking-widest font-semibold transition-all duration-300" onclick="window.location.href='stays.html'">
+                            Check Live Availability & Reserve
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🔗 SECTION 4: THE SYNERGY BRIDGE -->
+    <section class="py-20 px-6 md:px-12 max-w-5xl mx-auto text-center">
+        <div class="glass-card p-8 md:p-16 rounded-3xl relative overflow-hidden">
+            <div class="absolute -top-24 -left-24 w-48 h-48 bg-amberGlow/5 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-24 -right-24 w-48 h-48 bg-amberGlow/5 rounded-full blur-3xl"></div>
+            
+            <span class="text-xs font-semibold tracking-[0.3em] uppercase text-amberGlow block mb-4">The Convergence Loop</span>
+            <h2 class="text-3xl md:text-4xl font-editorial font-light tracking-wide mb-12">Experience. Evaluate. Integrate.</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-left relative z-10">
+                <div class="border-b md:border-b-0 md:border-r border-silk/10 pb-8 md:pb-0 md:pr-8">
+                    <h3 class="text-lg uppercase tracking-wider font-medium text-silk mb-3">For Prospective Owners</h3>
+                    <p class="text-titanium font-light text-sm leading-relaxed mb-6">Uncertain about smart automation responses or biometric gates? Spend a weekend living inside our Smart Apartments showroom before executing a custom build order.</p>
+                    <a href="stays.html" class="text-xs uppercase tracking-widest font-semibold text-amberGlow hover:text-silk transition-colors">Reserve a Showroom Stay <i class="fa-solid fa-arrow-right ml-1 text-[10px]"></i></a>
+                </div>
+                
+                <div class="pt-4 md:pt-0">
+                    <h3 class="text-lg uppercase tracking-wider font-medium text-silk mb-3">For Accommodated Guests</h3>
+                    <p class="text-titanium font-light text-sm leading-relaxed mb-6">Enjoyed the frictionless security of our automated portals and ambient light architecture during your stay? We retro-fit custom systems directly into your private property.</p>
+                    <a href="#contact" class="text-xs uppercase tracking-widest font-semibold text-amberGlow hover:text-silk transition-colors">Speak With an Engineer <i class="fa-solid fa-arrow-right ml-1 text-[10px]"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 👣 FOOTER -->
+    <footer id="contact" class="bg-basalt border-t border-silk/5 py-12 px-6 md:px-12 text-xs text-titanium tracking-wide">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+            <div>
+                <span class="text-lg font-editorial text-silk uppercase tracking-widest block mb-4">Smart Apartments<span class="text-amberGlow">.</span></span>
+                <p class="font-light leading-relaxed mb-4">Architectural infrastructure systems & responsive luxury smart apartment residences in Westlands, Nairobi.</p>
+                <div class="space-x-4 text-silk/60 text-sm">
+                    <a href="https://api.whatsapp.com/send?phone=254740813769" target="_blank" class="hover:text-amberGlow"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="tel:0740813769" class="hover:text-amberGlow"><i class="fa-solid fa-phone"></i></a>
+                    <a href="mailto:contact@smartapartments.co.ke" class="hover:text-amberGlow"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
+            <div>
+                <span class="text-silk uppercase font-medium block mb-4 tracking-wider">Installation Engineering</span>
+                <ul class="space-y-2 font-light">
+                    <li><a href="#" class="hover:text-silk">Smart Motor Gates</a></li>
+                    <li><a href="#" class="hover:text-silk">Biometric Doors</a></li>
+                    <li><a href="#" class="hover:text-silk">Automated Windows</a></li>
+                    <li><a href="#" class="hover:text-silk">Circadian Ambiance</a></li>
+                </ul>
+            </div>
+            <div>
+                <span class="text-silk uppercase font-medium block mb-4 tracking-wider">Showroom Hospitality</span>
+                <ul class="space-y-2 font-light">
+                    <li><a href="stays.html" class="hover:text-silk">Browse Residences</a></li>
+                    <li><a href="stays.html#reservation-card" class="hover:text-silk">WhatsApp Booking</a></li>
+                    <li><a href="stays.html#details" class="hover:text-silk">Suite Amenities</a></li>
+                    <li><a href="stays.html" class="hover:text-silk">Marina Bay Square</a></li>
+                </ul>
+            </div>
+            <div>
+                <span class="text-silk uppercase font-medium block mb-4 tracking-wider">Contact & Inquiries</span>
+                <p class="font-light leading-relaxed mb-2">Marina Bay Square, Westlands, Nairobi</p>
+                <p class="text-amberGlow font-mono mb-1">0740813769</p>
+                <p class="text-silk font-medium">contact@smartapartments.co.ke</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto border-t border-silk/5 pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] font-light">
+            <span>&copy; 2026 Smart Apartments. All rights reserved. Marina Bay Square, Westlands, Nairobi.</span>
+            <div class="space-x-4 mt-4 sm:mt-0">
+                <a href="#" class="hover:text-silk">Privacy Framework</a>
+                <a href="#" class="hover:text-silk">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ⚡ JAVASCRIPT: HERO INTERACTION & CURSOR TRACKING GLOWS -->
+    <script>
+        // 1. Dual-Hero Funnel Shift System (Desktop Only Layout)
+        const container = document.getElementById('hero-split-container');
+        const leftPanel = document.getElementById('panel-left');
+        const rightPanel = document.getElementById('panel-right');
+
+        if (window.innerWidth >= 768) {
+            leftPanel.addEventListener('mouseenter', () => {
+                leftPanel.style.width = '62%';
+                rightPanel.style.width = '38%';
+                rightPanel.style.filter = 'blur(4px) brightness(0.5)';
+            });
+
+            leftPanel.addEventListener('mouseleave', () => {
+                leftPanel.style.width = '50%';
+                rightPanel.style.width = '50%';
+                rightPanel.style.filter = 'none';
+            });
+
+            rightPanel.addEventListener('mouseenter', () => {
+                rightPanel.style.width = '62%';
+                leftPanel.style.width = '38%';
+                leftPanel.style.filter = 'blur(4px) brightness(0.5)';
+            });
+
+            rightPanel.addEventListener('mouseleave', () => {
+                leftPanel.style.width = '50%';
+                rightPanel.style.width = '50%';
+                leftPanel.style.filter = 'none';
+            });
+        }
+
+        // 2. Real-Time Bento Card Mouse Spotlight Tracker
+        const glowCards = document.querySelectorAll('.glow-card');
+        
+        glowCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+</body>
+</html>

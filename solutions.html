@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infrastructure Engineering | Canvas Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { void: '#12110F', basalt: '#1C1A17', silk: '#F5F2EB', titanium: '#9C9384', amberGlow: '#FF9E64' },
+                    fontFamily: { serif: ['Cormorant Garamond', 'serif'], sans: ['Plus Jakarta Sans', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #12110F; color: #F5F2EB; font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-panel { background: rgba(28, 26, 23, 0.4); backdrop-filter: blur(16px); border: 1px solid rgba(245, 242, 235, 0.05); }
+    </style>
+</head>
+<body class="pt-24">
+
+    <!-- NAVIGATION INCLUSION HEADER -->
+    <nav class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-silk/5 py-4 px-6 md:px-12 flex items-center justify-between">
+        <a href="index.html" class="text-xl font-serif tracking-widest font-light uppercase">Canvas<span class="text-amberGlow">.</span></a>
+        <div class="hidden md:flex items-center space-x-8 text-xs tracking-widest uppercase font-medium">
+            <a href="solutions.html" class="text-amberGlow">Installations</a>
+            <span class="text-silk/20">|</span>
+            <a href="stays.html" class="text-titanium hover:text-silk transition-colors">Smart Stays</a>
+        </div>
+        <a href="#quote-engine" class="bg-silk text-void text-xs uppercase tracking-widest font-semibold px-5 py-2.5 rounded-full">Request System Quote</a>
+    </nav>
+
+    <!-- HERO PROFILE -->
+    <header class="py-20 px-6 max-w-5xl mx-auto text-center md:text-left">
+        <span class="text-xs font-semibold tracking-[0.3em] uppercase text-amberGlow block mb-3">Architectural Modules</span>
+        <h1 class="text-4xl md:text-6xl font-serif font-light mb-6 tracking-wide">Forging Autonomous Infrastructure.</h1>
+        <p class="text-titanium text-base font-light max-w-2xl leading-relaxed">We design and integrate mechanical systems directly into residential envelopes. Zero visible wireways, absolute military-grade system encryption, beautiful operational tactile feedback.</p>
+    </header>
+
+    <!-- DETAILED COMPONENT DEPLOYMENT SPECIFICATIONS -->
+    <section class="px-6 max-w-7xl mx-auto space-y-24 pb-32">
+        
+        <!-- Module 1: Portals & Gateways -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center border-t border-silk/5 pt-12">
+            <div>
+                <span class="text-xs font-mono text-amberGlow/60 tracking-wider block mb-2">01 / SYSTEM CONFIGURATION</span>
+                <h2 class="text-2xl md:text-3xl font-serif font-light mb-4">Perimeter Gates & Biometric Doors</h2>
+                <p class="text-titanium text-sm font-light leading-relaxed mb-6">Our automated entry gates operate on variable-frequency continuous heavy drive systems designed to function fluidly during utility outages. Main entryway doors are retrofitted with solid multi-point electromagnetic deadbolts paired with low-profile high-speed processing optical biometric hubs.</p>
+                <ul class="space-y-3 text-xs tracking-wide text-silk/80">
+                    <li><i class="fa-solid fa-circle-check text-amberGlow mr-2"></i> Sub-1.2 Second Recognition Encryption Processing</li>
+                    <li><i class="fa-solid fa-circle-check text-amberGlow mr-2"></i> Heavy Duty High-Torque Underground Mechanical Drives</li>
+                    <li><i class="fa-solid fa-circle-check text-amberGlow mr-2"></i> Encrypted Multi-Tier Backup Remote Handover Frequencies</li>
+                </ul>
+            </div>
+            <div class="h-80 rounded-2xl bg-cover bg-center border border-silk/10 shadow-2xl" style="background-image: url('https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&q=80&w=800');"></div>
+        </div>
+
+        <!-- Module 2: Windows & Apertures -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center folder-swap">
+            <div class="h-80 rounded-2xl bg-cover bg-center border border-silk/10 shadow-2xl md:order-last" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800');"></div>
+            <div>
+                <span class="text-xs font-mono text-amberGlow/60 tracking-wider block mb-2">02 / INTERFACE Blueprints</span>
+                <h2 class="text-2xl md:text-3xl font-serif font-light mb-4">Invisible Autonomous Glazing Systems</h2>
+                <p class="text-titanium text-sm font-light leading-relaxed mb-6">Automate massive panoramic slide systems and upper level ventilation transoms. Monitored through internal climate control sensors, the structural panels shift seamlessly to optimize thermal loads, dropping your HVAC operational cost footprint dramatically.</p>
+                <ul class="space-y-3 text-xs tracking-wide text-silk/80">
+                    <li><i class="fa-solid fa-circle-check text-amberGlow mr-2"></i> Ultra-quiet Brushless Servo Linear Micro-actuators</li>
+                    <li><i class="fa-solid fa-circle-check text-amberGlow mr-2"></i> Smart Glass Tinting Polarization Integration Support</li>
+                    <li><i class="fa-solid fa-circle-check text-amberGlow mr-2"></i> Weatherstation Interface Array for Localized High Wind Auto-Sealing</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 📊 INTEGRATION INTAKE ENGINE (QUOTE FORM) -->
+    <section id="quote-engine" class="bg-basalt py-24 px-6 border-t border-silk/5">
+        <div class="max-w-3xl mx-auto glass-panel p-8 md:p-12 rounded-3xl">
+            <h2 class="text-2xl md:text-4xl font-serif font-light text-center mb-4">Initiate Engineering Integration</h2>
+            <p class="text-titanium text-center text-xs tracking-wide uppercase mb-8">Bespoke System Layout Specification Form</p>
+            
+            <form class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs uppercase tracking-widest font-medium text-titanium mb-2">Full Name</label>
+                        <input type="text" class="w-full bg-void border border-silk/10 rounded-xl p-3 text-silk focus:outline-none focus:border-amberGlow transition-colors" placeholder="Wilson Mwaura">
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase tracking-widest font-medium text-titanium mb-2">Project Location</label>
+                        <input type="text" class="w-full bg-void border border-silk/10 rounded-xl p-3 text-silk focus:outline-none focus:border-amberGlow transition-colors" placeholder="Nairobi / Kiambu">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-widest font-medium text-titanium mb-2">System Modules Required</label>
+                    <div class="grid grid-cols-2 gap-3 text-xs">
+                        <label class="flex items-center p-3 bg-void rounded-xl border border-silk/5 cursor-pointer hover:border-amberGlow/40">
+                            <input type="checkbox" class="accent-amberGlow mr-3"> Smart Motor Gates & Doors
+                        </label>
+                        <label class="flex items-center p-3 bg-void rounded-xl border border-silk/5 cursor-pointer hover:border-amberGlow/40">
+                            <input type="checkbox" class="accent-amberGlow mr-3"> Automated Windows / Blinds
+                        </label>
+                        <label class="flex items-center p-3 bg-void rounded-xl border border-silk/5 cursor-pointer hover:border-amberGlow/40">
+                            <input type="checkbox" class="accent-amberGlow mr-3"> Circadian Lighting Systems
+                        </label>
+                        <label class="flex items-center p-3 bg-void rounded-xl border border-silk/5 cursor-pointer hover:border-amberGlow/40">
+                            <input type="checkbox" class="accent-amberGlow mr-3"> Full Estate Orchestration
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-amberGlow text-void py-4 rounded-xl text-xs uppercase tracking-widest font-semibold hover:bg-amberGlow/90 transition-colors">Submit Architecture Blueprint Request</button>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

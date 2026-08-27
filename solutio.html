@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&family=Syne:wght@700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { studioBase: '#F9F8F6', studioInk: '#151413', studioBorder: '#E5E2DD', laserCyan: '#00E5FF' },
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'], display: ['Syne', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white p-6 md:p-12 overflow-y-auto h-screen">
+
+    <!-- OVERVIEW LAYOUT HEADER -->
+    <header class="pb-8 border-b border-studioBorder mb-12 flex justify-between items-end">
+        <div>
+            <span class="text-[10px] font-mono uppercase tracking-widest text-studioInk/40">Deployment Pillar _01</span>
+            <h2 class="text-2xl font-display uppercase tracking-tight mt-1 text-studioInk">Hardware Architecture</h2>
+        </div>
+        <div class="text-xs font-mono border border-studioInk text-studioInk px-3 py-1 rounded-md uppercase">Systems Portfolio</div>
+    </header>
+
+    <!-- 2-COLUMN INDUSTRIAL DESIGN GRID -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <!-- System 1 Block -->
+        <div class="border border-studioBorder rounded-2xl p-6 bg-studioBase/40 flex flex-col justify-between">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="w-2 h-2 rounded-full bg-laserCyan animate-pulse"></span>
+                    <h3 class="font-display uppercase tracking-wide text-sm font-bold">Smart Portals & Perimeter Gates</h3>
+                </div>
+                <p class="text-xs font-light text-studioInk/70 leading-relaxed mb-4">Heavy-gauge motor conversions for sliding or double-swing security gates. Paired directly with access controllers utilizing multi-spectral biometrics and unified cloud credential fallback logs.</p>
+            </div>
+            <div class="text-[10px] font-mono text-studioInk/40 uppercase">Variable speed motor matching</div>
+        </div>
+
+        <!-- System 2 Block -->
+        <div class="border border-studioBorder rounded-2xl p-6 bg-studioBase/40 flex flex-col justify-between">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="w-2 h-2 rounded-full bg-laserCyan"></span>
+                    <h3 class="font-display uppercase tracking-wide text-sm font-bold">Automated Openings & Apertures</h3>
+                </div>
+                <p class="text-xs font-light text-studioInk/70 leading-relaxed mb-4">Linear smart actuator drives fitted directly inside high-altitude ventilation panels and large panoramic windows. Integrates weather data logic for programmatic structural closure protocols.</p>
+            </div>
+            <div class="text-[10px] font-mono text-studioInk/40 uppercase">High load pressure balancing</div>
+        </div>
+
+        <!-- System 3 Block -->
+        <div class="border border-studioBorder rounded-2xl p-6 bg-studioBase/40 flex flex-col justify-between">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="w-2 h-2 rounded-full bg-laserCyan"></span>
+                    <h3 class="font-display uppercase tracking-wide text-sm font-bold">Circadian Lighting Infrastructure</h3>
+                </div>
+                <p class="text-xs font-light text-studioInk/70 leading-relaxed mb-4">Bespoke localized dimming architecture shifting color values automatically based on external day arcs. Smooth, flicker-free low voltage systems engineered to blend with interior finishes.</p>
+            </div>
+            <div class="text-[10px] font-mono text-studioInk/40 uppercase">0.1% Micro-dimming depth profiles</div>
+        </div>
+
+        <!-- System 4 Block (The Synergy Callout) -->
+        <div class="border-2 border-dashed border-studioBorder rounded-2xl p-6 flex flex-col justify-between items-start bg-amber-50/20">
+            <div>
+                <h3 class="font-display uppercase text-sm font-bold text-amber-800 mb-2">Live Telemetry Proofing</h3>
+                <p class="text-xs font-light text-studioInk/70 leading-relaxed">Want to see these individual hardware actuators perform in real architectural footprints? Access our operational Showroom stays using the side navigational frame utility.</p>
+            </div>
+            <button onclick="window.parent.switchContext('stays')" class="mt-4 text-[10px] font-mono uppercase bg-studioInk text-white px-3 py-1.5 rounded-lg hover:bg-studioInk/80">Launch Booking Engine <i class="fa-solid fa-arrow-right ml-1"></i></button>
+        </div>
+    </section>
+
+    <!-- INTAKE BLUEPRINT MATRIX FORM -->
+    <section class="border border-studioInk rounded-2xl p-8 bg-studioInk text-studioBase">
+        <h3 class="font-display text-xl uppercase tracking-wider mb-2">Request Architectural Estimate</h3>
+        <p class="text-xs text-studioBase/60 font-light mb-6">Submit structural requirements to coordinate a localized spatial engineering site audit.</p>
+        
+        <form class="space-y-4 text-xs">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <input type="text" placeholder="Full Professional Name" class="bg-white/10 border border-white/20 rounded-xl p-3 text-white focus:outline-none focus:border-laserCyan transition-colors">
+                <input type="text" placeholder="Property Zone (e.g. Nairobi)" class="bg-white/10 border border-white/20 rounded-xl p-3 text-white focus:outline-none focus:border-laserCyan transition-colors">
+            </div>
+            <textarea placeholder="Outline deployment nodes required (Gates, Windows, Lighting, Doors)" class="w-full bg-white/10 border border-white/20 rounded-xl p-3 h-24 text-white focus:outline-none focus:border-laserCyan transition-colors"></select></textarea>
+            <button type="submit" class="w-full bg-white text-studioInk p-3 rounded-xl font-display uppercase tracking-widest font-bold hover:bg-studioBase transition-colors">Queue Systems Engineer Request</button>
+        </form>
+    </section>
+
+</body>
+</html>

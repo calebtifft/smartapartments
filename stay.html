@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutique Smart Accommodations | Canvas Stays</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { void: '#12110F', basalt: '#1C1A17', silk: '#F5F2EB', titanium: '#9C9384', amberGlow: '#FF9E64' },
+                    fontFamily: { serif: ['Cormorant Garamond', 'serif'], sans: ['Plus Jakarta Sans', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #12110F; color: #F5F2EB; font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-panel { background: rgba(28, 26, 23, 0.4); backdrop-filter: blur(16px); border: 1px solid rgba(245, 242, 235, 0.05); }
+    </style>
+</head>
+<body class="pt-24">
+
+    <!-- NAVIGATION HEADER -->
+    <nav class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-silk/5 py-4 px-6 md:px-12 flex items-center justify-between">
+        <a href="index.html" class="text-xl font-serif tracking-widest font-light uppercase">Canvas<span class="text-amberGlow">.</span></a>
+        <div class="hidden md:flex items-center space-x-8 text-xs tracking-widest uppercase font-medium">
+            <a href="solutions.html" class="text-titanium hover:text-silk transition-colors">Installations</a>
+            <span class="text-silk/20">|</span>
+            <a href="stays.html" class="text-amberGlow">Smart Stays</a>
+        </div>
+        <a href="#portfolio-browser" class="bg-amberGlow text-void text-xs uppercase tracking-widest font-semibold px-5 py-2.5 rounded-full">Reserve Luxury Suite</a>
+    </nav>
+
+    <!-- HOSPITALITY BANNER PROFILE -->
+    <header class="py-16 px-6 max-w-7xl mx-auto border-b border-silk/5">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+            <div>
+                <span class="text-xs font-semibold tracking-[0.3em] uppercase text-amberGlow block mb-2">Live Showrooms</span>
+                <h1 class="text-4xl md:text-5xl font-serif font-light tracking-wide">Immersive Connected Living.</h1>
+            </div>
+            <p class="text-titanium text-sm font-light leading-relaxed max-w-md">Every private reserve listed below serves as a functioning luxury showroom. Manage your environment dynamically from arrival sequence through check-out departure via localized secure terminal automation pools.</p>
+        </div>
+    </header>
+
+    <!-- PORTFOLIO LOOP GRID -->
+    <main id="portfolio-browser" class="py-24 px-6 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Booking Card 1: Obsidian Suite -->
+        <div class="glass-panel rounded-2xl overflow-hidden group border border-silk/5 flex flex-col justify-between">
+            <div>
+                <div class="relative h-64 overflow-hidden">
+                    <div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-700" style="background-image: url('https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&q=80&w=600');"></div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-xl font-serif font-light tracking-wide">The Obsidian Loft</h3>
+                        <span class="text-xs font-mono text-amberGlow">Ksh 18,500/night</span>
+                    </div>
+                    <p class="text-titanium text-xs font-light leading-relaxed mb-6">A high-elevation architectural masterpiece configured with remote gate handover, localized smart doors, and circadian tracking ambient ceiling grids.</p>
+                    
+                    <!-- Technology Breakouts Dropdown info -->
+                    <div class="border-t border-silk/5 pt-4 space-y-2">
+                        <span class="text-[10px] tracking-widest uppercase font-semibold text-silk block mb-2">Integrated Smart Systems:</span>
+                        <div class="flex flex-wrap gap-2 text-[10px] text-titanium">
+                            <span class="bg-void px-2 py-1 rounded border border-silk/5"><i class="fa-solid fa-fingerprint mr-1 text-amberGlow"></i> Biometric Door</span>
+                            <span class="bg-void px-2 py-1 rounded border border-silk/5"><i class="fa-solid fa-cloud-sun mr-1 text-amberGlow"></i> Weather Synced Windows</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-6 pt-0">
+                <button onclick="openBookingModal('The Obsidian Loft', 18500)" class="w-full bg-silk text-void text-xs uppercase tracking-widest font-semibold py-3 rounded-xl hover:bg-amberGlow transition-colors duration-300">Instant Direct Booking</button>
+            </div>
+        </div>
+
+        <!-- Additional properties scale clean right next to each other matching this functional design loop -->
+
+    </main>
+
+    <!-- ⚡ MODAL WINDOW DIALOG INTEGRATION (DIRECT EMBEDDED BOOKING INTERFACE) -->
+    <div id="booking-modal" class="fixed inset-0 bg-void/90 backdrop-blur-md z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="glass-panel max-w-md w-full p-8 rounded-2xl mx-4 relative">
+            <button onclick="closeBookingModal()" class="absolute top-4 right-4 text-titanium hover:text-silk text-lg"><i class="fa-solid fa-xmark"></i></button>
+            <h3 id="modal-title" class="text-2xl font-serif font-light mb-1">Reserve Space</h3>
+            <p id="modal-price" class="text-xs text-amberGlow font-mono mb-6"></p>
+            
+            <form class="space-y-4 text-xs">
+                <div>
+                    <label class="block tracking-wider uppercase text-titanium mb-2">Check-in / Check-out Dates</label>
+                    <input type="date" class="w-full bg-void border border-silk/10 rounded-xl p-3 text-silk focus:outline-none focus:border-amberGlow">
+                </div>
+                <div>
+                    <label class="block tracking-wider uppercase text-titanium mb-2">Total Guest Count</label>
+                    <select class="w-full bg-void border border-silk/10 rounded-xl p-3 text-silk focus:outline-none focus:border-amberGlow">
+                        <option>1 Guest Suite</option>
+                        <option>2 Guests Executive</option>
+                        <option>4 Guests Full Estate Max</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-amberGlow text-void py-3.5 rounded-xl font-semibold tracking-widest uppercase mt-4">Confirm Live Reservation</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('booking-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalPrice = document.getElementById('modal-price');
+
+        function openBookingModal(propertyName, price) {
+            modalTitle.innerText = `Reserve ${propertyName}`;
+            modalPrice.innerText = `Configured Showroom Tracking Rate: Ksh ${price.toLocaleString()} / night`;
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeBookingModal() {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+        }
+    </script>
+</body>
+</html>
